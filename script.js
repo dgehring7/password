@@ -1,5 +1,10 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+let lowercaseChars = "abcdefghijklomopqrstuvwxyz";
+let uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let numericalChar = "0123456789";
+let specialChar = "@%+\\/!#$^?:)(}][~-_."
+
 function getpasswordcriteria() {
   let passwordlength= parseInt(prompt("Enter length for password"));
 
@@ -38,6 +43,16 @@ function getpasswordcriteria() {
       alert ("Include at least one character type has to be selected");
     return
     }
+    
+    // Creat object to store user inputs
+    passwordInputs = {
+      length : passwordlength,
+      includeSpc : includeSpc,
+      includeLwr :  includeLwr,
+      includeUpr : includeUpr,
+      includeNmbr : includeNmbr
+    }
+return passwordInputs;
 }
 function generatePassword() {
   let pswinput=getpasswordcriteria();
