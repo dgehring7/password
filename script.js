@@ -1,12 +1,17 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-let lowercaseChars = "abcdefghijklomopqrstuvwxyz";
+let lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
 let uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let numericalChar = "0123456789";
-let specialChar = "@%+\\/!#$^?:)(}][~-_."
+let specialChar = "@%+\/!#$^*?:)(}][~-_.<>";
+let password = "";
+let character = "";
+let passChars = "";
 
 function getpasswordcriteria() {
   let passwordlength= parseInt(prompt("Enter length for password"));
+  passChars = "";
+  password = "";
 
   if (isNaN(passwordlength) === true) {
     alert ("Length must be a number");
@@ -23,17 +28,26 @@ function getpasswordcriteria() {
   }
 
   // Create variable to store boolean including special characters
-  let includeSpc = confirm ("Click ok to confirm to include special characters. Otherwise click cancel");
-
+  let includeSpc = confirm ("Click ok to confirm to include special characters.");
+  if (includeSpc){
+    passChars = passChars+specialChar;
+  }
   // Create variable to store boolean including lowercase
-  let includeLwr = confirm ("Click ok to confirm to include lowercase characters. Otherwise click cancel");
-  
+  let includeLwr = confirm ("Click ok to confirm to include lowercase characters.");
+  if (includeLwr){
+    passChars = passChars+lowercaseChars;
+  }
   // Create variable to store boolean including Uppercase characters
-  let includeUpr = confirm ("Click ok to confirm to include Uppercase characters. Otherwise click cancel");
-  
+  let includeUpr = confirm ("Click ok to confirm to include Uppercase characters.");
+  if (includeUpr){
+    passChars = passChars+uppercaseChars;
+  }
   // Create variable to store boolean including Numerical characters
-  let includeNmbr = confirm ("Click ok to confirm to include numerical characters. Otherwise click cancel");
-
+  let includeNmbr = confirm ("Click ok to confirm to include numerical characters.");
+  if (includeNmbr){
+    passChars = passChars+numericalChar;
+  }
+  console.log(passChars);
   // Check to see if at least one charccter type is selected
   if (
     includeSpc === false &&
@@ -46,7 +60,7 @@ function getpasswordcriteria() {
     
     // Creat object to store user inputs
     passwordInputs = {
-      length : passwordlength,
+      passLength : passwordlength,
       includeSpc : includeSpc,
       includeLwr :  includeLwr,
       includeUpr : includeUpr,
@@ -56,16 +70,23 @@ return passwordInputs;
 }
 function generatePassword() {
   let pswinput=getpasswordcriteria();
+  for (var i = 0; i < pswinput.passLength; i++){
+      password = password+passChars.charAt(Math.floor(Math.random()*passChars.length));
+  }
+return password;
 }
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  let userPassword = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.value = userPassword;
 
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+
+writePassword
+getpasswordcriteria
