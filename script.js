@@ -81,12 +81,10 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = userPassword;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
 
 writePassword
 getpasswordcriteria
